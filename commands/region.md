@@ -1,69 +1,74 @@
 ---
-description: Run the full Foresight Engine pipeline with an expanded regional lens — auto-detects India, USA, Europe, or China and applies regional multipliers to signal scoring, surfacing local structural advantages and discounts in the report.
+description: Run the full Foresight Engine pipeline with an expanded regional lens. Auto-detects India, USA, Europe, or China from the query and surfaces regional multipliers, local structural advantages, and context notes in the report.
+argument-hint: "your forecasting question (mention a region)"
+allowed-tools: Bash(python:*), WebSearch, WebFetch, Read, Write
 ---
 
-Run the full Foresight Engine pipeline with expanded regional analysis on: $ARGUMENTS
+Run the full Foresight Engine pipeline with expanded regional lens on: $ARGUMENTS
 
-This is identical to `/foresight-engine:analyze` but with the regional lens explicitly expanded in the output.
+This is identical to /analyze but with the regional multipliers explicitly surfaced and explained in the output.
 
-**STEP 1 — VALIDATE INPUT**
+**STEP 1 — VALIDATE**
 
-Run: `python D:/Claude/foresight-engine/src/input_validator.py "$ARGUMENTS"`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/input_validator.py" "$ARGUMENTS"`
 
-If `valid` is false, display the rejection and stop.
+If `valid` is false, show rejection and stop.
 
-**STEP 2 — COLLECT SIGNALS**
+**STEP 2 — COLLECT SIGNALS (REGION-FOCUSED)**
 
-Use web_search to collect 18+ signals about: $ARGUMENTS
+Use WebSearch to collect 18+ signals about: $ARGUMENTS
 
-Run 6 searches with varied angles including region-specific searches:
-1. Current state and recent data (with regional focus)
-2. Supporting trends in the detected region
-3. Opposing signals and regional headwinds
-4. Regional policy, regulatory, and government actions
-5. Regional technology and infrastructure factors
-6. Historical precedents from the region or comparable regions
+Run 6 searches with regional focus:
+1. Current state and data in the detected region
+2. Regional supporting trends
+3. Regional headwinds and opposing signals
+4. Regional policy and regulatory actions
+5. Regional technology and infrastructure
+6. Historical analogues from or comparable to the region
 
-Classify each signal with `signal_type`, `steeep_category`, `temporal_layer`, `source`, `date`, `evidence_type`.
+Classify each: `signal_type`, `steeep_category`, `temporal_layer`, `source`, `date`, `evidence_type`.
 
-Write all signals to `D:/Claude/foresight-engine/signals.json`.
+Write to `${CLAUDE_PLUGIN_ROOT}/signals.json`.
 
-**STEP 3 — SCORE SIGNALS WITH REGIONAL MULTIPLIERS**
+**STEP 3 — SCORE WITH REGIONAL MULTIPLIERS**
 
-Run: `python D:/Claude/foresight-engine/src/signal_scorer.py D:/Claude/foresight-engine/signals.json`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/signal_scorer.py" "${CLAUDE_PLUGIN_ROOT}/signals.json"`
 
-The scorer auto-detects region from the query and applies regional multipliers from `D:/Claude/foresight-engine/contexts/`.
+The scorer auto-detects the region and applies multipliers from `${CLAUDE_PLUGIN_ROOT}/contexts/`.
 
-**STEP 4 — BUILD MATRIX**
+**STEP 4 — MATRIX**
 
-Run: `python D:/Claude/foresight-engine/src/matrix_builder.py D:/Claude/foresight-engine/scored_signals.json`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/matrix_builder.py" "${CLAUDE_PLUGIN_ROOT}/scored_signals.json"`
 
-**STEP 5 — FIND HISTORICAL ANALOGUES**
+**STEP 5 — HISTORICAL ANALOGUES (REGION-PRIORITIZED)**
 
-Prioritize analogues from the detected region or comparable regional situations. Write to `D:/Claude/foresight-engine/analogues.json`.
+Find 3 historical analogues, prioritizing examples from or comparable to the detected region.
 
-**STEP 6 — COMPUTE PROBABILITIES + CONFIDENCE**
+Write to `${CLAUDE_PLUGIN_ROOT}/analogues.json`.
 
-Run: `python D:/Claude/foresight-engine/src/probability_calc.py D:/Claude/foresight-engine/scored_signals.json D:/Claude/foresight-engine/analogues.json`
+**STEP 6 — PROBABILITIES + GUIDANCE**
 
-Run: `python D:/Claude/foresight-engine/src/decision_guidance.py D:/Claude/foresight-engine/probabilities.json D:/Claude/foresight-engine/matrix.json D:/Claude/foresight-engine/scored_signals.json`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/probability_calc.py" "${CLAUDE_PLUGIN_ROOT}/scored_signals.json" "${CLAUDE_PLUGIN_ROOT}/analogues.json"`
 
-**STEP 7 — WRITE SCENARIOS**
+!`python "${CLAUDE_PLUGIN_ROOT}/src/decision_guidance.py" "${CLAUDE_PLUGIN_ROOT}/probabilities.json" "${CLAUDE_PLUGIN_ROOT}/matrix.json" "${CLAUDE_PLUGIN_ROOT}/scored_signals.json"`
 
-Write four scenarios (PROBABLE, PLAUSIBLE, POSSIBLE, PREFERABLE) with regional context woven into each.
+**STEP 7 — WRITE SCENARIOS** (with regional context woven into each)
 
-**STEP 8 — ASSEMBLE REPORT WITH EXPANDED REGIONAL LENS**
+**STEP 8 — OUTPUT FULL REPORT + EXPANDED REGIONAL LENS**
 
-Output the full intelligence report (same format as `/foresight-engine:analyze`) PLUS an expanded Regional Lens section:
+Output the complete report (same as /analyze) PLUS this expanded section:
 
 ```
-[REGIONAL LENS — DETECTED REGION]
+[REGIONAL LENS — EXPANDED]
 Detected region: [India / USA / Europe / China / Global]
+
 Top multipliers applied:
-  [STEEEP/Temporal] [value]x — [reason from context notes]
-  [STEEEP/Temporal] [value]x — [reason from context notes]
-Key discounts applied:
-  [STEEEP/Temporal] [value]x — [reason]
-Key local variable: [structural factor unique to this region]
-Regional context note: [1-2 sentences on how regional structure shapes this outcome]
+  [STEEEP/Temporal] [value]x — [why this region has an advantage here]
+  [STEEEP/Temporal] [value]x — [why this region has an advantage here]
+
+Discounts applied:
+  [STEEEP/Temporal] [value]x — [structural weakness or friction]
+
+Key local variable: [one structural factor unique to this region]
+Regional insight: [1-2 sentences on how regional structure shapes this outcome]
 ```

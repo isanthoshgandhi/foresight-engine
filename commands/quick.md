@@ -1,56 +1,50 @@
 ---
-description: Run a fast Foresight Engine signal pulse — validate query, collect live signals, score STEEEP matrix, and compute probability distribution. No scenario writing. Target under 60 seconds.
+description: Run a fast Foresight Engine signal pulse on a forecasting question. Validates query, collects live signals, scores the STEEEP matrix, and computes probability distribution. No scenario writing. Target under 60 seconds.
+argument-hint: "your forecasting question"
+allowed-tools: Bash(python:*), WebSearch, WebFetch, Read, Write
 ---
 
-Run the fast Foresight Engine signal pulse on: $ARGUMENTS
+Run a fast signal pulse on: $ARGUMENTS
 
-**STEP 1 — VALIDATE INPUT**
+**STEP 1 — VALIDATE**
 
-Run: `python D:/Claude/foresight-engine/src/input_validator.py "$ARGUMENTS"`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/input_validator.py" "$ARGUMENTS"`
 
-If `valid` is false, display the rejection and stop:
-```
-INVALID QUERY
-Rule failed: [rule_failed]
-Reason: [failure_reason]
-Suggestion: [scope_note]
-```
+If `valid` is false, show rejection and stop.
 
 **STEP 2 — COLLECT SIGNALS**
 
-Use web_search to collect 12+ signals about: $ARGUMENTS
+Use WebSearch to collect 12+ signals about: $ARGUMENTS
 
-Run 4 searches:
-1. Current state and recent data
-2. Supporting trends
-3. Opposing signals and headwinds
-4. Policy and market signals
+Run 4 searches: current state, supporting trends, opposing signals, policy/market signals.
 
-Classify each signal with `signal_type` (SUPPORTING/OPPOSING/WILDCARD), `steeep_category`, `temporal_layer`, `source`, `date`, `evidence_type`.
+Classify each: `signal_type`, `steeep_category`, `temporal_layer`, `source`, `date`, `evidence_type`.
 
-Write to `D:/Claude/foresight-engine/signals.json`.
+Write to `${CLAUDE_PLUGIN_ROOT}/signals.json`.
 
-**STEP 3 — SCORE SIGNALS**
+**STEP 3 — SCORE**
 
-Run: `python D:/Claude/foresight-engine/src/signal_scorer.py D:/Claude/foresight-engine/signals.json`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/signal_scorer.py" "${CLAUDE_PLUGIN_ROOT}/signals.json"`
 
-**STEP 4 — BUILD MATRIX**
+**STEP 4 — MATRIX**
 
-Run: `python D:/Claude/foresight-engine/src/matrix_builder.py D:/Claude/foresight-engine/scored_signals.json`
+!`python "${CLAUDE_PLUGIN_ROOT}/src/matrix_builder.py" "${CLAUDE_PLUGIN_ROOT}/scored_signals.json"`
 
-**STEP 6 — COMPUTE PROBABILITIES**
+**STEP 5 — PROBABILITIES**
 
-Run: `python D:/Claude/foresight-engine/src/probability_calc.py D:/Claude/foresight-engine/scored_signals.json D:/Claude/foresight-engine/analogues.json`
+Create empty analogues file if needed: !`python -c "import json; open('${CLAUDE_PLUGIN_ROOT}/analogues.json','w').write('[]')"`
 
-(Use empty analogues.json: `[]` if not present)
+!`python "${CLAUDE_PLUGIN_ROOT}/src/probability_calc.py" "${CLAUDE_PLUGIN_ROOT}/scored_signals.json" "${CLAUDE_PLUGIN_ROOT}/analogues.json"`
 
-**OUTPUT — SIGNAL PULSE ONLY**
+**OUTPUT**
+
+Read `${CLAUDE_PLUGIN_ROOT}/probabilities.json` and `${CLAUDE_PLUGIN_ROOT}/matrix.json`, then output:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FORESIGHT ENGINE — QUICK PULSE
-[query]
-Confidence: [confidence]/100 | Signals: [n] | [date]
+$ARGUMENTS
+Confidence: [n]/100 | Signals: [n] | [today's date]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SIGNAL PULSE
@@ -59,11 +53,11 @@ Net: [direction]
 Hot zone: [hottest_cell]
 
 PROBABILITY DISTRIBUTION
-■ PROBABLE  [pct%] [bar]
-■ PLAUSIBLE [pct%] [bar]
-■ POSSIBLE  [pct%] [bar]
+■ PROBABLE  [n%] [████░░░░░░░░░░░░░░░░]
+■ PLAUSIBLE [n%] [████░░░░░░░░░░░░░░░░]
+■ POSSIBLE  [n%] [████░░░░░░░░░░░░░░░░]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Run /foresight-engine:analyze for full scenarios and decision guidance.
+Run /analyze for full scenarios and decision guidance.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
