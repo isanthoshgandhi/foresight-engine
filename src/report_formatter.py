@@ -167,7 +167,7 @@ def format_report(
             f"Opposing {opp_n} {_bar(opp_n, max_n)} | "
             f"Wild {wld_n}"
         ),
-        f"Net: {matrix.net_direction} LEADS",
+        f"Net: {matrix.net_direction}{' LEADS' if matrix.net_direction != 'NEUTRAL' else ''}",
         f"Hot zone: {matrix.hottest_cell}",
         f"Gap: {blind_show}",
     ]
@@ -175,7 +175,8 @@ def format_report(
     # ── HISTORICAL MATCH ────────────────────────────────────────────────────
     if best_analogue:
         sim_int = int(best_analogue.similarity_score)
-        india_equiv = "EXISTS" if india_adjusted else "NOT YET HAPPENED"
+        best_sim = best_analogue.similarity_score if best_analogue else 0
+        india_equiv = "EXISTS" if (india_adjusted and best_sim >= 60) else ("PARTIAL" if india_adjusted else "ABSENT")
         lines += [
             "",
             "HISTORICAL MATCH",
@@ -381,7 +382,7 @@ def format_from_dict(data: dict) -> str:
         (f"Supporting {sup_n} [{_bar(sup_n, max_n)}] | "
          f"Opposing {opp_n} [{_bar(opp_n, max_n)}] | "
          f"Wild {wld_n}"),
-        f"Net: {net_direction} LEADS",
+        f"Net: {net_direction}{' LEADS' if net_direction != 'NEUTRAL' else ''}",
         f"Hot zone: {hottest_cell}",
         f"Gap: {blind_show}",
     ]
@@ -506,7 +507,9 @@ def main():
     print(report_text)
 
     # Also save JSON version
-    out_path = Path("report_output.json")
+    import os
+    plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", "."))
+    out_path = plugin_root / "report_output.json"
     output_data = {
         "query": data.get("query", ""),
         "report_text": report_text,
