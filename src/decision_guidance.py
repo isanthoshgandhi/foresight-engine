@@ -171,7 +171,9 @@ def main():
 
     result = compute_guidance(probabilities, matrix, scored_signals, confidence_score)
 
-    out_path = Path("guidance.json")
+    import os
+    plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", "."))
+    out_path = plugin_root / "guidance.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
 
