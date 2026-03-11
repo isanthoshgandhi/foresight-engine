@@ -583,7 +583,9 @@ def main():
         "total_signals": len(scored),
     }
 
-    out_path = Path("scored_signals.json")
+    import os
+    plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", "."))
+    out_path = plugin_root / "scored_signals.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
 
