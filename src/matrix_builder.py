@@ -154,7 +154,9 @@ def main():
     matrix = build_steeep_matrix(scored_signals)
     result = _matrix_to_dict(matrix)
 
-    out_path = Path("matrix.json")
+    import os
+    plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", "."))
+    out_path = plugin_root / "matrix.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
 
