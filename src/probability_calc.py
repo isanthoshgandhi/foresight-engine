@@ -311,7 +311,8 @@ def main():
         "confidence": result_obj.confidence,
     }
 
-    out_path = Path(sys.argv[1]).parent / "probabilities.json"
+    plugin_root = Path(sys.argv[1]).parent
+    out_path = plugin_root / "probabilities.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
 
