@@ -136,6 +136,12 @@ The server auto-resolves `src/` relative to its own path. If you see import erro
 
 ---
 
+## Shared Code Note
+
+The `src/` modules in this repo are also present in [foresight-engine-plugin](https://github.com/isanthoshgandhi/foresight-engine-plugin) (Claude Code). They are intentionally duplicated for independent installation. **If you fix a bug in `src/`, sync the change to both repos manually.**
+
+---
+
 ## License
 
 MIT
