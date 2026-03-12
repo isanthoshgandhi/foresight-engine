@@ -1,7 +1,7 @@
 {
   "name": "foresight-engine",
-  "description": "AI-powered strategic foresight engine for Claude Code. Four-scenario intelligence reports backed by live signals, STEEEP matrix, historical analogues, and deterministic probability scoring. Commands: /foresight-engine:analyze, /foresight-engine:quick, /foresight-engine:region, /foresight-engine:india",
-  "version": "1.2.1",
+  "description": "Strategic foresight engine using IFTF methodology. Two modes: Soft Predict (Claude-native, instant — just ask a future question) and Hard Predict (deterministic Python chain, auditable — say 'run hard predict: ...'). Drivers, cross-impact, backcasting, four-scenario reports. Try: Will India become the global AI leader by 2050? Will OpenAI or Anthropic win by 2030?",
+  "version": "2.0.0",
   "author": {
     "name": "Santhosh Gandhi",
     "email": "isanthoshgandhi@gmail.com"
