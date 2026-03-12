@@ -1,0 +1,12 @@
+{
+  "name": "foresight-engine",
+  "description": "AI-powered strategic foresight engine for Claude Code. Four-scenario intelligence reports backed by live signals, STEEEP matrix, historical analogues, and deterministic probability scoring. Commands: /foresight-engine:analyze, /foresight-engine:quick, /foresight-engine:region, /foresight-engine:india",
+  "version": "1.2.0",
+  "author": {
+    "name": "Santhosh Gandhi",
+    "email": "isanthoshgandhi@gmail.com"
+  },
+  "homepage": "https://github.com/isanthoshgandhi/foresight-engine",
+  "repository": "https://github.com/isanthoshgandhi/foresight-engine",
+  "license": "MIT"
+}
