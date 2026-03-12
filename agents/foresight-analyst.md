@@ -265,7 +265,95 @@ Combine all outputs into `report_data.json`:
 python "${CLAUDE_PLUGIN_ROOT}/skills/hard-predict/scripts/report_formatter.py" "${CLAUDE_PLUGIN_ROOT}/report_data.json"
 ```
 
-Output the formatted plain text report to the user.
+**MANDATORY: Output ALL sections below, every single run, no exceptions. Never produce a partial report.**
+
+The canonical output template is:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORESIGHT ENGINE
+[Query]
+Confidence: [X]/100 | Signals: [N] | [YYYY-MM-DD]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SIGNAL PULSE
+Supporting [N] [████████████░░░░░░░░] | Opposing [N] [████░░░░░░░░░░░░░░░░] | Wild [N]
+Net: [SUPPORTING LEADS / OPPOSING LEADS / NEUTRAL]
+Hot zone: [dominant zone]
+Gap: [gap zones or "None — full coverage"]
+
+STRUCTURAL DRIVERS
+D1 [Name] — [Force] ([Stability])
+D2 [Name] — [Force] ([Stability])
+D3 [Name] — [Force] ([Stability])
+
+CROSS-IMPACT
+Operational:    [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
+Strategic:      [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
+Civilizational: [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
+Friction:       [friction points or "None detected"]
+
+HISTORICAL MATCH
+[Best analogue] ([similarity]% similar)
+Tipped by: [tipping event]
+Equivalent now: [EXISTS / PARTIAL / ABSENT]
+Validates: [D1 / D2 / D3]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+■ PROBABLE [[X]%] — [Title]
+[2–3 sentence narrative. No hedging.]
+PROOF: [fact with number or date]
+IF: [activation condition]
+BUT: [constraint]
+DRIVER: D[n]
+
+■ PLAUSIBLE [[X]%] — [Title]
+[2–3 sentence narrative]
+PROOF: [fact with number or date]
+IF: [activation condition]
+BUT: [constraint]
+DRIVER: D[n]
+
+■ POSSIBLE [[X]%] — [Title]
+[2–3 sentence narrative]
+PROOF: [fact with number or date]
+IF: [activation condition]
+BUT: [constraint]
+DRIVER: D[n]
+
+■ PREFERABLE — [Title]
+[2–3 sentences: desired state as already achieved. No hedging.]
+BACKCAST
+  Civilizational: [what must be structurally true by the far horizon]
+  Strategic:      [what must be built or decided in the medium term]
+  Operational:    [what must begin NOW to set the trajectory]
+LEVERAGE: [single highest-leverage action today — specific actor, specific action]
+DRIVER: D[n]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE ONE THING
+[One sentence: the single variable that determines which scenario activates]
+INCIDENT: [real past event showing this variable's power]
+WATCH: [leading indicator — a milestone, metric, or policy action]
+IF YES → [what accelerates]
+IF NO  → [what stalls]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DECISION GUIDANCE
+Recommended stance: [from deterministic logic]
+Low-regret move:    [action that pays off in multiple scenarios]
+Risk trigger:       [highest-scored opposing signal — could invalidate probable if...]
+
+[REGIONAL LENS — [REGION]]
+Top multipliers: [steeep/temporal (Xx)] [steeep/temporal (Xx)]
+Key local variable: [one sentence on dominant local structural factor]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+Output this to the user exactly. Also save as `report_output.json`.
 
 ---
 

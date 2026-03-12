@@ -307,7 +307,9 @@ Confidence qualifier:
 
 Risk trigger: the opposing signal with the highest final_score.
 
-#### Report Template
+#### Canonical Output Template
+
+**MANDATORY: Output ALL sections below, every single run, no exceptions. Never skip a section. Never produce a partial report. This is the complete template for both Soft Predict and Hard Predict.**
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -328,13 +330,16 @@ D2 [Name] — [Force] ([Stability])
 D3 [Name] — [Force] ([Stability])
 
 CROSS-IMPACT
-Strategic: [CONVERGENCE / ISOLATED / BLIND LAYER] — [which categories]
-Friction:  [friction points or "None"]
+Operational:    [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
+Strategic:      [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
+Civilizational: [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
+Friction:       [friction points or "None detected"]
 
 HISTORICAL MATCH
 [Best analogue] ([similarity]% similar)
 Tipped by: [tipping event]
 Equivalent now: [EXISTS / PARTIAL / ABSENT]
+Validates: [D1 / D2 / D3]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -360,12 +365,12 @@ BUT: [constraint]
 DRIVER: D[n]
 
 ■ PREFERABLE — [Title]
-[2–3 sentences: desired state as already achieved]
+[2–3 sentences: desired state as already achieved. No hedging.]
 BACKCAST
-  Civilizational: [what must be true far out]
-  Strategic:      [what must be built mid-term]
-  Operational:    [what must happen now]
-LEVERAGE: [single highest-leverage action today]
+  Civilizational: [what must be structurally true by the far horizon]
+  Strategic:      [what must be built or decided in the medium term]
+  Operational:    [what must begin NOW to set the trajectory]
+LEVERAGE: [single highest-leverage action today — specific actor, specific action]
 DRIVER: D[n]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -380,9 +385,9 @@ IF NO  → [what stalls]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 DECISION GUIDANCE
-Recommended stance: [from logic above]
+Recommended stance: [from deterministic logic]
 Low-regret move:    [action that pays off in multiple scenarios]
-Risk trigger:       [opposing signal with highest score — could invalidate probable if...]
+Risk trigger:       [highest-scored opposing signal — could invalidate probable if...]
 
 [REGIONAL LENS — [REGION]]
 Top multipliers: [steeep/temporal (Xx)] [steeep/temporal (Xx)]
