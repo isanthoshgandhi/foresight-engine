@@ -507,9 +507,7 @@ def main():
     print(report_text)
 
     # Also save JSON version
-    import os
-    plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", "."))
-    out_path = plugin_root / "report_output.json"
+    out_path = Path(sys.argv[1]).parent / "report_output.json"
     output_data = {
         "query": data.get("query", ""),
         "report_text": report_text,
