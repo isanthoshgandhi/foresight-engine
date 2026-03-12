@@ -8,15 +8,15 @@ Activate when the user asks any future-oriented question — "Will [X]?", "Who w
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TRY ASKING
+TRY ASKING  (year optional — engine infers the horizon)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■ Will Elon Musk become president of USA by 2032?
-■ Will India become the global AI leader by 2050?
-■ Who will win the AI race — OpenAI or Anthropic?
-■ Will UPI become Southeast Asia's default payment rail by 2028?
+■ Who will win — Google or Perplexity?
+■ Will OpenAI or Anthropic dominate the AI race?
+■ Will India become the global AI leader?
+■ Will crypto replace banks?
+■ Will remote work become permanent?
 ■ Will EVs dominate Indian cities by 2032?
-■ Will crypto replace banks by 2035?
-■ Will remote work become permanent by 2027?
+■ Will UPI become Southeast Asia's default payment rail by 2028?
 ■ Will Europe lead the green energy transition by 2035?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
