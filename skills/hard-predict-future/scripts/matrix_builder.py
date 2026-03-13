@@ -9,7 +9,11 @@ Output: matrix.json to stdout + writes file
 """
 
 from __future__ import annotations
+import os
 import sys
+# Ensure scripts directory is on path so signal_scorer can be imported from any CWD
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import json
 from pathlib import Path
 from typing import Dict, List

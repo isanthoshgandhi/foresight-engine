@@ -1,4 +1,16 @@
-# Foresight Engine — Soft Predict
+---
+name: soft-predict-future
+description: >
+  Activate this skill for ANY future-oriented question. Triggers include: "Will [X]?",
+  "Who will win [X]?", "What happens to [X]?", "Can [X] succeed?", "What's the future of X?",
+  foresight analysis, scenario planning, STEEEP analysis, futures cone, prediction requests,
+  or any question about a future outcome. Year is NOT required — the engine infers the horizon.
+  Also activate when the user says "predict", "forecast", "what are the odds", "scenario analysis",
+  or asks about competitive races, technology adoption, geopolitical shifts, or market dominance.
+  REQUIRES web search to be enabled — if web search is unavailable, tell the user before proceeding.
+---
+
+# Soft Predict Future — Foresight Engine
 
 Activate when the user asks any future-oriented question — "Will [X]?", "Who will win [X]?", "What happens to [X]?", "Can [X] succeed?", or any question about a future outcome. **Year is NOT required.** Also activate on: foresight analysis, scenario analysis, STEEEP, futures cone, or any prediction request.
 
@@ -21,7 +33,7 @@ TRY ASKING  (year optional — engine infers the horizon)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-> **Soft Predict** uses Claude's native reasoning + web search. Outputs are structurally correct and fast. For deterministic, auditable scoring say: **"Run hard predict: [your question]"**
+> **Soft Predict Future** uses Claude's native reasoning + web search. Outputs are structurally correct and fast. For deterministic, auditable scoring say: **"Run hard predict future: [your question]"**
 
 ---
 
@@ -317,90 +329,112 @@ Risk trigger: the opposing signal with the highest final_score.
 
 #### Canonical Output Template
 
-**MANDATORY: Output ALL sections below, every single run, no exceptions. Never skip a section. Never produce a partial report. This is the complete template for both Soft Predict and Hard Predict.**
+**MANDATORY: Output ALL sections below, every single run, no exceptions. Never skip a section. Never produce a partial report.**
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FORESIGHT ENGINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOFT PREDICT FUTURE  ·  FORESIGHT ENGINE
 [Query]
-Confidence: [X]/100 | Signals: [N] | Horizon: [YYYY–YYYY] | [YYYY-MM-DD]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Confidence: [X]/100  |  Signals: [N]  |  Horizon: [YYYY–YYYY]  |  [YYYY-MM-DD]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERDICT: [One direct sentence answering the query — no hedging, no "it depends"]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SIGNAL PULSE
-Supporting [N] [████████████░░░░░░░░] | Opposing [N] [████░░░░░░░░░░░░░░░░] | Wild [N]
+— How many pieces of real-world evidence support, oppose, or complicate this question
+Supporting [N] [████████████░░░░░░░░]  Opposing [N] [████░░░░░░░░░░░░░░░░]  Wild [N]
 Net: [SUPPORTING LEADS / OPPOSING LEADS / NEUTRAL]
-Hot zone: [dominant zone]
-Gap: [gap zones or "None — full coverage"]
+Hot zone: [The single STEEEP category with strongest evidence]
+Gap: [STEEEP categories with no signals, or "None — full coverage"]
 
 STRUCTURAL DRIVERS
-D1 [Name] — [Force] ([Stability])
-D2 [Name] — [Force] ([Stability])
-D3 [Name] — [Force] ([Stability])
+— The 3 deep causal forces (not events) explaining WHY the signals exist. Stability = likelihood of change.
+D1 [Name] — [Force] ([LOCKED / SHIFTING / FRAGILE])
+D2 [Name] — [Force] ([LOCKED / SHIFTING / FRAGILE])
+D3 [Name] — [Force] ([LOCKED / SHIFTING / FRAGILE])
 
 CROSS-IMPACT
+— Whether multiple STEEEP domains reinforce or contradict each other in the same time layer
 Operational:    [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
 Strategic:      [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
 Civilizational: [CONVERGENCE / ISOLATED / BLIND LAYER] — [explanation]
-Friction:       [friction points or "None detected"]
+Friction:       [Conflicting domain pairs, or "None detected"]
 
 HISTORICAL MATCH
+— Real past transition most structurally similar to this question. Higher % = stronger precedent.
 [Best analogue] ([similarity]% similar)
-Tipped by: [tipping event]
+Tipped by: [The specific event or policy that caused the shift]
 Equivalent now: [EXISTS / PARTIAL / ABSENT]
 Validates: [D1 / D2 / D3]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ■ PROBABLE [[X]%] — [Title]
+— The most evidence-backed outcome given current signal strength
 [2–3 sentence narrative. No hedging.]
-PROOF: [fact with number or date]
-IF: [activation condition]
-BUT: [constraint]
+PROOF: [Fact with number or date]
+IF:    [The condition that activates this scenario]
+BUT:   [The constraint or bottleneck that could slow it]
 DRIVER: D[n]
 
 ■ PLAUSIBLE [[X]%] — [Title]
+— A realistic alternative if moderate signals strengthen or dominant ones weaken
 [2–3 sentence narrative]
-PROOF: [fact with number or date]
-IF: [activation condition]
-BUT: [constraint]
+PROOF: [Fact with number or date]
+IF:    [Activation condition]
+BUT:   [Constraint]
 DRIVER: D[n]
 
 ■ POSSIBLE [[X]%] — [Title]
+— A lower-probability outcome driven by wildcards or high-scoring opposing signals
 [2–3 sentence narrative]
-PROOF: [fact with number or date]
-IF: [activation condition]
-BUT: [constraint]
+PROOF: [Fact with number or date]
+IF:    [Activation condition]
+BUT:   [Constraint]
 DRIVER: D[n]
 
 ■ PREFERABLE — [Title]
+— Not a prediction. A designed future: what the best achievable outcome looks like, traced back to today.
 [2–3 sentences: desired state as already achieved. No hedging.]
 BACKCAST
-  Civilizational: [what must be structurally true by the far horizon]
-  Strategic:      [what must be built or decided in the medium term]
-  Operational:    [what must begin NOW to set the trajectory]
-LEVERAGE: [single highest-leverage action today — specific actor, specific action]
+  Civilizational: [What must be structurally true by the far horizon]
+  Strategic:      [What must be built or decided in the medium term]
+  Operational:    [What must begin NOW to set the trajectory]
+LEVERAGE: [Single highest-leverage action today — specific actor, specific action]
 DRIVER: D[n]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 THE ONE THING
-[One sentence: the single variable that determines which scenario activates]
-INCIDENT: [real past event showing this variable's power]
-WATCH: [leading indicator — a milestone, metric, or policy action]
-IF YES → [what accelerates]
-IF NO  → [what stalls]
+— The single variable whose presence or absence determines which scenario actually unfolds
+[One sentence naming the deciding variable]
+INCIDENT: [Real past event showing this variable's power]
+WATCH:    [Leading indicator — a milestone, metric, or policy action to monitor]
+IF YES → [What accelerates]
+IF NO  → [What stalls]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 DECISION GUIDANCE
-Recommended stance: [from deterministic logic]
-Low-regret move:    [action that pays off in multiple scenarios]
-Risk trigger:       [highest-scored opposing signal — could invalidate probable if...]
+Recommended stance: [From deterministic probability logic]
+Low-regret move:    [Action that pays off in multiple scenarios simultaneously]
+Risk trigger:       [Highest-scored opposing signal — the one that could invalidate Probable]
 
 [REGIONAL LENS — [REGION]]
-Top multipliers: [steeep/temporal (Xx)] [steeep/temporal (Xx)]
-Key local variable: [one sentence on dominant local structural factor]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Top multipliers: [STEEEP/temporal (Xx)]  [STEEEP/temporal (Xx)]
+Key local variable: [One sentence on the dominant local structural factor]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+METHODOLOGY KEY
+Signal score (0–1)     Recency × source reliability × signal type × evidence strength — higher = fresher, better-sourced, stronger evidence
+Confidence (0–100)     30% signal volume + 30% STEEEP diversity + 20% recency + 20% evidence quality — reflects how well the signal base covers the question
+Probability split       Derived from weighted signal counts + historical analogue similarity — not a poll, a structured evidence calculation
+STEEEP matrix          6 domains × 3 time horizons — cells above 0.50 are "hot" (structurally active); gaps mean blind spots in the evidence
+Historical similarity   Structural pattern match to real past transitions — 60%+ is reliable precedent; below 40% is weak grounding
+Convergence bonus      +5% added to Probable when 2+ STEEEP domains reinforce each other in the Strategic layer
+Stability tiers        LOCKED = unlikely to change in 10yr | SHIFTING = could change in 3–5yr | FRAGILE = could reverse in 1–2yr
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---

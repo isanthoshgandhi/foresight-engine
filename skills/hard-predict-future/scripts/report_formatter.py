@@ -19,8 +19,12 @@ Output: formatted plain text to stdout + writes report_output.json
 """
 
 from __future__ import annotations
+import os
 import re
 import sys
+# Ensure scripts directory is on path so sibling modules can be imported from any CWD
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import json
 from dataclasses import dataclass, field
 from datetime import datetime
