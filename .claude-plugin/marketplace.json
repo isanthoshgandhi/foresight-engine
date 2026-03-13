@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Strategic foresight and futures analysis tools for Claude.",
-    "version": "1.2.1"
+    "version": "2.1.0"
   },
   "plugins": [
     {
       "name": "foresight-engine",
       "source": "./",
-      "description": "AI-powered strategic foresight engine. Four-scenario analysis backed by live signals, historical analogues, and deterministic probability scoring. Works on claude.ai (skill) and Claude Code (plugin).",
-      "version": "1.2.1",
+      "description": "Strategic foresight engine using IFTF methodology. Soft Predict Future (skill, instant) + Hard Predict Future (12-step agent, Python-computed). STEEEP matrix, structural drivers, historical analogues, four-scenario output with VERDICT.",
+      "version": "2.1.0",
       "author": {
         "name": "Santhosh Gandhi",
         "email": "isanthoshgandhi@gmail.com"
