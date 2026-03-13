@@ -294,10 +294,9 @@ The canonical output template is:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HARD PREDICT FUTURE · FORESIGHT ENGINE
 [Query]
+VERDICT: [Direct answer — one sentence, no hedging. State what will most likely happen.]
 Confidence: [X]/100 | Signals: [N] | Horizon: [YYYY–YYYY] | [YYYY-MM-DD]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-VERDICT: [Direct answer — one sentence, no hedging. State what will most likely happen.]
 
 SIGNAL PULSE  ·  Evidence collected and classified by type and direction
 Supporting [N] [████████████░░░░░░░░] | Opposing [N] [████░░░░░░░░░░░░░░░░] | Wild [N]

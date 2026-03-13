@@ -335,9 +335,8 @@ Risk trigger: the opposing signal with the highest final_score.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SOFT PREDICT FUTURE  ·  FORESIGHT ENGINE
 [Query]
-Confidence: [X]/100  |  Signals: [N]  |  Horizon: [YYYY–YYYY]  |  [YYYY-MM-DD]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 VERDICT: [One direct sentence answering the query — no hedging, no "it depends"]
+Confidence: [X]/100  |  Signals: [N]  |  Horizon: [YYYY–YYYY]  |  [YYYY-MM-DD]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SIGNAL PULSE
