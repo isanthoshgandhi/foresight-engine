@@ -1,8 +1,8 @@
 # Foresight Engine
 
-> Strategic foresight engine using IFTF methodology. Two modes: **Soft Predict** (Claude-native, instant) and **Hard Predict** (deterministic Python chain, auditable). Structural drivers, cross-impact analysis, IFTF backcasting, four-scenario reports. **Year is optional** — ask any future question and the engine infers the right time horizon.
+> Strategic foresight engine using IFTF methodology. Two modes: **Soft Predict Future** (Claude-native skill, instant, works on claude.ai) and **Hard Predict Future** (deterministic 12-step agent, Python-computed, auditable — requires Claude Code). Structural drivers, cross-impact analysis, IFTF backcasting, four-scenario reports with VERDICT. **Year is optional** — ask any future question and the engine infers the right time horizon.
 >
-> **Author:** Santhosh Gandhi · **Version:** 2.0.0
+> **Author:** Santhosh Gandhi · **Version:** 2.1.0
 
 ---
 
@@ -25,9 +25,10 @@ Year is optional. The engine infers the right horizon from your question.
 
 ## Two Modes
 
-| | Soft Predict | Hard Predict |
+| | Soft Predict Future | Hard Predict Future |
 |---|---|---|
-| **How** | Claude-native — just ask a question | Say "run hard predict: [question]" |
+| **How** | Claude-native skill — just ask a question | Say "run hard predict: [question]" |
+| **Platform** | Claude Code, claude.ai, Claude for Work | Claude Code only (needs Python + Bash) |
 | **Scoring** | Claude estimates using the formula | Python computes deterministically |
 | **Reproducibility** | ±2–5% variance per run | Identical every run |
 | **Audit trail** | Claude reasoning (implicit) | JSON files for every step |
@@ -47,9 +48,14 @@ claude plugin install foresight-engine
 
 Then just ask any future question — Soft Predict activates automatically.
 
-For Hard Predict say:
+For Hard Predict Future say:
 ```
 Run hard predict: Will India become the global AI leader by 2050?
+```
+
+To invoke explicitly by name:
+```
+/foresight-engine:hard-predict-future Will OpenAI or Anthropic win by 2030?
 ```
 
 ---
@@ -60,10 +66,11 @@ Every run — both modes — always outputs the same complete report:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FORESIGHT ENGINE
+[SOFT / HARD] PREDICT FUTURE · FORESIGHT ENGINE
 [Query]
-Confidence: [X]/100 | Signals: [N] | [Date]
+Confidence: [X]/100 | Signals: [N] | Horizon: [YYYY–YYYY] | [Date]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERDICT              — direct answer, one sentence, no hedging
 SIGNAL PULSE         — supporting / opposing / wildcard counts + visual bars
 STRUCTURAL DRIVERS   — D1, D2, D3 with stability rating
 CROSS-IMPACT         — convergence and friction across time horizons
@@ -77,6 +84,7 @@ HISTORICAL MATCH     — best analogue + similarity score
 THE ONE THING        — the single variable that determines which scenario activates
 DECISION GUIDANCE    — recommended stance, low-regret move, risk trigger
 REGIONAL LENS        — India / USA / Europe / China multipliers
+METHODOLOGY KEY      — one-line explanation of every score and formula
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
