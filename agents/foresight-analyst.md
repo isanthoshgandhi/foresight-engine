@@ -1,5 +1,6 @@
 ---
 name: hard-predict-future
+category: specialized-domains
 description: >
   Activate this agent for any future-oriented question that requires deep quantitative analysis,
   historical precedents, and structured scenario planning. Triggers include: "Will [X]?",
