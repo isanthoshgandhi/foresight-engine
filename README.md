@@ -1,8 +1,8 @@
 # Foresight Engine
 
-> Strategic foresight engine using IFTF methodology. Two modes: **Soft Predict Future** (Claude-native skill, instant, works on claude.ai) and **Hard Predict Future** (deterministic 12-step agent, Python-computed, auditable — requires Claude Code). Structural drivers, cross-impact analysis, IFTF backcasting, four-scenario reports with VERDICT. **Year is optional** — ask any future question and the engine infers the right time horizon.
+> Strategic foresight engine using IFTF methodology. Two modes: **Soft Predict Future** (Claude-native skill, instant, works on claude.ai) and **Hard Predict Future** (deterministic 12-step agent, Python-computed, auditable — requires Claude Code). Structural drivers, cross-impact analysis, IFTF backcasting, four independent futures with per-stakeholder conditional analysis. **Year is optional** — ask any future question and the engine infers the right time horizon.
 >
-> **Author:** Santhosh Gandhi · **Version:** 2.1.0
+> **Author:** Santhosh Gandhi · **Version:** 2.2.0
 
 ---
 
@@ -68,18 +68,30 @@ Every run — both modes — always outputs the same complete report:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [SOFT / HARD] PREDICT FUTURE · FORESIGHT ENGINE
 [Query]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PREDICTIONS
+■ Probable  [X/100] [████████████░░░░░░░░] — most likely trajectory
+■ Plausible [X/100] [████████░░░░░░░░░░░░] — credible alternative
+■ Possible  [X/100] [████░░░░░░░░░░░░░░░░] — low-probability but real
+■ Preferable         [stakeholder analysis below]
+
 Confidence: [X]/100 | Signals: [N] | Horizon: [YYYY–YYYY] | [Date]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-VERDICT              — direct answer, one sentence, no hedging
 SIGNAL PULSE         — supporting / opposing / wildcard counts + visual bars
+STEEEP MATRIX        — 6×3 grid with ★ hot  ● warm  ✗ blind indicators
 STRUCTURAL DRIVERS   — D1, D2, D3 with stability rating
 CROSS-IMPACT         — convergence and friction across time horizons
 HISTORICAL MATCH     — best analogue + similarity score
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■ PROBABLE  [X%]     — most likely trajectory
-■ PLAUSIBLE [X%]     — credible alternative
-■ POSSIBLE  [X%]     — low-probability but real
-■ PREFERABLE         — designed future with IFTF backcasting
+■ PROBABLE  scenario  — narrative + PROOF + IF + BUT + DRIVER
+■ PLAUSIBLE scenario  — narrative + PROOF + IF + BUT + DRIVER
+■ POSSIBLE  scenario  — narrative + PROOF + IF + BUT + DRIVER
+■ PREFERABLE          — IFTF backcasting from desired future to today
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PREFERABLE FUTURES · Per stakeholder
+  [Player A]: Wins IF → [condition]  BUT ONLY → [constraint]  ONLY THEN → [outcome]
+  [Player B]: Wins IF → [condition]  BUT ONLY → [constraint]  ONLY THEN → [outcome]
+  Users:      Wins IF → [condition]  BUT ONLY → [constraint]  ONLY THEN → [outcome]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 THE ONE THING        — the single variable that determines which scenario activates
 DECISION GUIDANCE    — recommended stance, low-regret move, risk trigger
@@ -101,7 +113,7 @@ METHODOLOGY KEY      — one-line explanation of every score and formula
 5. **Build STEEEP matrix** — 18-cell grid: 6 categories × 3 time horizons
 6. **Cross-impact analysis** — convergence and friction points across temporal layers
 7. **Find analogues** — 3 real historical cases, similarity scored, mapped to drivers
-8. **Compute probabilities + confidence** — normalized to sum exactly to 100%
+8. **Compute predictions + confidence** — 3 independent scores (0–100 each, do NOT sum to 100); confidence penalizes blind spots
 9. **Write scenarios + report** — PROBABLE / PLAUSIBLE / POSSIBLE + PREFERABLE with IFTF backcasting
 
 **Hard Predict** runs the same pipeline with Python handling steps 1, 3, 5, 8, and report formatting deterministically.
